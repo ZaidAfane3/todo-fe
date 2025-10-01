@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instances for different services
 const authApi = axios.create({
-  baseURL: process.env.REACT_APP_AUTH_BASE_URL || '/api/auth',
+  baseURL: process.env.REACT_APP_AUTH_BASE_URL || '/auth',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
