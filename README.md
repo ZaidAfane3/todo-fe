@@ -164,6 +164,36 @@ src/
 - **Username**: admin
 - **Password**: password
 
+## CI/CD
+
+The frontend service uses GitHub Actions for continuous integration and deployment.
+
+### CI Pipeline (`dev` branch)
+
+Triggered on pushes to the `dev` branch:
+- **Build**: Creates Docker image
+- **Security Scan**: Runs Trivy vulnerability scanning
+- **Image**: `us-central1-docker.pkg.dev/personal-473312/microservice/fe-service`
+
+### CD Pipeline (`main` branch)
+
+Triggered on pushes to the `main` branch:
+- **Build & Push**: Builds and pushes Docker image to GCP Artifact Registry
+- **GitOps Update**: Updates the deployment manifest in the GitOps repository
+- **Auto-deploy**: Triggers deployment via ArgoCD/Kubernetes
+
+### Required Secrets
+
+Set these in your GitHub repository settings:
+- `GCP_SA_KEY`: GCP Service Account JSON key for Artifact Registry access
+- `GH_PAT`: GitHub Personal Access Token for GitOps repository updates
+
+### GitOps Repository
+
+The CD pipeline updates: `ZaidAfane3/todo-infra`
+- Path: `k8s/todo/todo-fe/deployment.yaml`
+- Updates the image tag to trigger automatic deployment
+
 ## Contributing
 
 1. Follow the existing code style
