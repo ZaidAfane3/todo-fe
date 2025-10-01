@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instances for different services
 const authApi = axios.create({
-  baseURL: process.env.REACT_APP_AUTH_BASE_URL || 'http://localhost:3001',
+  baseURL: process.env.REACT_APP_AUTH_BASE_URL || '/api/auth',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -10,7 +10,7 @@ const authApi = axios.create({
 });
 
 const todoApi = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:3002',
+  baseURL: process.env.REACT_APP_API_BASE_URL || '/api/todo',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

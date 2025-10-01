@@ -4,6 +4,9 @@ FROM node:18-alpine as build
 # Set working directory
 WORKDIR /app
 
+# Set production environment variables for build
+ENV NODE_ENV=production
+
 # Copy package files
 COPY package*.json ./
 
