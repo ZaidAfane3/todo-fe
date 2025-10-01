@@ -10,7 +10,7 @@ const authApi = axios.create({
 });
 
 const todoApi = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_URL || '/api/todo',
+  baseURL: process.env.REACT_APP_API_BASE_URL || '/api',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
