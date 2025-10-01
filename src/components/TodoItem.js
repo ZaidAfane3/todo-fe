@@ -7,7 +7,7 @@ const TodoItem = ({ todo, onToggle, onDelete, onEdit, onEditComplete, isEditing 
   const handleToggle = async () => {
     setLoading(true);
     try {
-      await onToggle(todo.id, todo.completed);
+      await onToggle(todo.id, !todo.completed);
     } finally {
       setLoading(false);
     }
