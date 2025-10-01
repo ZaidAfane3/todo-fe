@@ -12,6 +12,7 @@ env:
   GITOPS_REPO: ZaidAfane3/todo-infra
   GITOPS_PATH: todo-fe
 
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
