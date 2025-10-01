@@ -67,6 +67,11 @@ export const todoService = {
     return response.data;
   },
 
+  getTodoSuggestions: async () => {
+    const response = await todoApi.get('/to-do/suggestions');
+    return response.data;
+  },
+
   getUser: async () => {
     const response = await todoApi.get('/user');
     return response.data;
