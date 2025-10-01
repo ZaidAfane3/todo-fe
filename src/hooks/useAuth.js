@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [hasAttemptedLogin, setHasAttemptedLogin] = useState(false);
 
   // Check authentication status on app load
   useEffect(() => {
@@ -32,7 +33,9 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       setUser(null);
-      setError(err.message);
+      if (hasAttemptedLogin) {
+        setError(err.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -40,10 +43,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
+      setHasAttemptedLogin(true);
       setError(null);
       const response = await authService.login(username, password);
       if (response.success) {
         setUser(response.user);
+        setHasAttemptedLogin(false);
         return { success: true };
       }
       return { success: false, message: response.message };
@@ -62,6 +67,7 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setUser(null);
       setError(null);
+      setHasAttemptedLogin(false);
     }
   };
 
