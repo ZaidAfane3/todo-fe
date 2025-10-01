@@ -2,6 +2,10 @@
 
 A modern, responsive React frontend for the Todo Microservice application.
 
+## Documentation
+
+- [Architecture & Integration Guide](docs/ARCHITECTURE.md) – detailed data flow between the frontend, Auth service, and Todo backend, including endpoint usage and extension tips.
+
 ## Features
 
 - 🔐 **Authentication**: Login/logout with session management
