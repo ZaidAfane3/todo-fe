@@ -1,0 +1,42 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Production build (will be created during build)
+build
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# README
+README.md
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Tests
+coverage/
+.nyc_output/
+
+# Misc
+.cache
+.parcel-cache
