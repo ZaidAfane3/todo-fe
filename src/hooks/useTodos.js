@@ -1,7 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import { todoService } from '../services/api';
 
-export const useTodos = () => {
+const TodosContext = createContext(null);
+
+const useTodosProvider = () => {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -73,7 +75,7 @@ export const useTodos = () => {
     return updateTodo(id, { completed });
   }, [updateTodo]);
 
-  return {
+  const value = useMemo(() => ({
     todos,
     loading,
     error,
@@ -82,5 +84,27 @@ export const useTodos = () => {
     updateTodo,
     deleteTodo,
     toggleTodo,
-  };
+  }), [todos, loading, error, fetchTodos, createTodo, updateTodo, deleteTodo, toggleTodo]);
+
+  return value;
+};
+
+export const TodosProvider = ({ children }) => {
+  const value = useTodosProvider();
+
+  return (
+    <TodosContext.Provider value={value}>
+      {children}
+    </TodosContext.Provider>
+  );
+};
+
+export const useTodos = () => {
+  const context = useContext(TodosContext);
+
+  if (!context) {
+    throw new Error('useTodos must be used within a TodosProvider');
+  }
+
+  return context;
 };
